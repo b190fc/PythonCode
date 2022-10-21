@@ -1,13 +1,12 @@
 import os
-
-# text_file_path = input("Text File Locations: ")
 import shutil
 
-text_file_path = r"C:\Users\henry\Desktop\songs.txt"
-# dir_input = input("Directory with Songs: ")
-dir_input = r"C:\Users\henry\Desktop\songs\Songs"
-# dir_destination = input("Destination File: ")
-dir_destination = R"C:\Users\henry\Desktop\dest"
+text_file_path = input("Text File Locations: ")
+#text_file_path = r"C:\Users\henry\Desktop\songs.txt"
+dir_input = input("Directory with Songs: ")
+# dir_input = r"C:\Users\henry\Desktop\songs\Songs"
+dir_destination = input("Destination File: ")
+# dir_destination = R"C:\Users\henry\Desktop\dest"
 
 directory_list = os.listdir(dir_input)
 
@@ -105,4 +104,4 @@ while True:
 if __name__ == '__main__':
     pass
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
