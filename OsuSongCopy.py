@@ -1,6 +1,8 @@
 import os
 import shutil
 
+#create functions for code in future
+
 text_file_path = input("Text File Locations: ")
 #text_file_path = r"C:\Users\henry\Desktop\songs.txt"
 dir_input = input("Directory with Songs: ")
