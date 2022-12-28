@@ -1,56 +1,62 @@
+import io
 import os
 import shutil
 from datetime import datetime
 
-error_file = None
+log_file = NotImplemented
 
-#create functions for code in future test
 
-def init_error_log():
+# create functions for code in future test
+
+def init_log(file_dir=r"D:\henry\Files\Desktop\songtest") :
     try:
-        error_file = open(fr"D:\henry\Files\Desktop\book buffer\File.txt", "at")
-        error_file.write(f"\nTimeStamp:{datetime.now()}\n\n")
-        error_file.flush()
-        return 1
+        global log_file
+        log_file = open(fr"{file_dir}\Log.txt", "wt") #todo change wt to at
+        log_file.write(f"\nTimeStamp:{datetime.now()}\n\n")
+        log_file.flush()
+        return 0
     except IOError:
         return -1
 
-def error_log(msg):
-    error_file.write(msg)
-    error_file.flush()
 
-#one for searching for file in text folder
-def textfile(text_file_path) :
+def add_log(msg):
+    global log_file
+    print(msg)
+    log_file.write(f"{msg}\n")
+    log_file.flush()
+
+
+# one for searching for file in text folder
+def open_file(file):
     try:
-        text_file = open(text_file_path, "rt")
-    except OSError:
-        print()
-    
+        return open(file, "rt")
+    except OSError as e:
+        add_log(f"Error opening text file - {e}")
 
 
-
+def get_song_id(file):
+    return file.readline().rstrip()
+    pass
 
 
 if __name__ == '__main__':
-    #text_file_path = input("Text File Locations: ")
-    text_file_path = R"C:\Users\henry\Desktop\songs.txt"
-    #dir_input = input("Directory with Songs: ")
-    dir_input = R"C:\Users\henry\Desktop\songs\Songs"
-    #dir_destination = input("Destination File: ")
-    dir_destination = R"C:\Users\henry\Desktop\dest"
-    init_error_log()
+    # text_file_path = input("Text File Locations: ")
+    text_file_path = R"D:\henry\Files\Desktop\songtest\songs.txt"
+    # dir_input = input("Directory with Songs: ")
+    dir_input = R"D:\henry\Files\Desktop\songtest\Songs"
+    # dir_destination = input("Destination File: ")
+    dir_destination = R"D:\henry\Files\Desktop\songtest\dest"
 
+    init_log()
+    add_log("Initialise all code")
 
-    
+    text_file = open(text_file_path, "rt")
 
-    #error_file.write("test")
-    #error_file.flush()
-    print(fr"D:\henry\Files\Desktop\book buffer\File.txt")
-    print(datetime.now())
-    
-    text_file = textfile(text_file_path)
+    print(get_song_id(text_file))
+    print(get_song_id(text_file))
+    print(get_song_id(text_file))
 
-    #error_file.close()
-    #text_file.close()
+    # error_file.close()
+    # text_file.close()
 
 
