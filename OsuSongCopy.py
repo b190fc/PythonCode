@@ -35,8 +35,11 @@ def open_file(file):
 
 
 def get_song_id(file):
-    return file.readline().rstrip()
-    pass
+    song_id = file.readline().rstrip()
+    if song_id == "":
+        return -1
+    else:
+        return song_id
 
 
 if __name__ == '__main__':
@@ -51,7 +54,15 @@ if __name__ == '__main__':
     add_log("Initialise all code")
 
     text_file = open(text_file_path, "rt")
+    
+    while get_song_id(text_file) != -1:
+        pass
+    
+    # Song Ids have been parsed
+    text_file.close()
 
+    print(get_song_id(text_file))
+    print(get_song_id(text_file))
     print(get_song_id(text_file))
     print(get_song_id(text_file))
     print(get_song_id(text_file))
