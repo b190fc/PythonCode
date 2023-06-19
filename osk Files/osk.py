@@ -1,0 +1,6 @@
+
+
+oskFolder = ''
+SongFolder = ''
+DestFolder = ''
+secFolder = ''
