@@ -1,108 +1,73 @@
+import io
 import os
 import shutil
+from datetime import datetime
+
+log_file = NotImplemented
 
 
-text_file_path = input("Text File Locations: ")
-#text_file_path = r"C:\Users\henry\Desktop\songs.txt"
-dir_input = input("Directory with Songs: ")
-# dir_input = r"C:\Users\henry\Desktop\songs\Songs"
-dir_destination = input("Destination File: ")
-# dir_destination = R"C:\Users\henry\Desktop\dest"
+# create functions for code in future test
 
-directory_list = os.listdir(dir_input)
+def init_log(file_dir=r"D:\henry\Files\Desktop\songtest") :
+    try:
+        global log_file
+        log_file = open(fr"{file_dir}\Log.txt", "wt") #todo change wt to at
+        log_file.write(f"\nTimeStamp:{datetime.now()}\n\n")
+        log_file.flush()
+        return 0
+    except IOError:
+        return -1
 
-textfile = open(text_file_path, "rt")
-while True:
-    # loop through text file to read all song ID's
-    song_id = textfile.readline().rstrip()
-    # print(f"Song id: {song_id}")
+
+def add_log(msg):
+    global log_file
+    print(msg)
+    log_file.write(f"{msg}\n")
+    log_file.flush()
+
+
+# one for searching for file in text folder
+def open_file(file):
+    try:
+        return open(file, "rt")
+    except OSError as e:
+        add_log(f"Error opening text file - {e}")
+
+
+def get_song_id(file):
+    song_id = file.readline().rstrip()
     if song_id == "":
-        # exit loop as text file is empty
-        print("EOF has been reached for text file")
-        textfile.close()
-        exit(1)
+        return -1
+    else:
+        return song_id
 
-    # loop in directoroy
-    song_location = None
 
-    for x in directory_list:
-        file_list = x.split(" ", 1)
-        file_number = file_list[0]
-        file_name = file_list[1]
-        # print(f"file num: {file_number}, songid: {song_id}")
-        # check if number is the song id from text file
-        if file_number == song_id:
-
-            song_directory_path = f"{dir_input}\\{x}"
-
-            song_directory = os.listdir(song_directory_path)
-            print(f"Song Directory: {song_directory_path}")
-            file_found = False
-            print(song_directory.count(".mp3"))
-            if "audio.mp3test" in song_directory:
-                print("found song")
-                file_found = True
-                song_location = f"{song_directory_path}\\audio.mp3"
-            else:
-                #check if .mp3 file is only 1,
-                mp3_list = []
-                for y in song_directory:
-                    # print(f"y: {y}")
-                    # print(y.split(".", 1)[1])
-                    try:
-                        if y.split(".", 1)[1] == "mp3":
-                            # print("Split found", y)
-                            mp3_list.append(y)
-                    except IndexError:
-                        print("error has occured")
-                        print(y)
-                        pass
-
-                print(f"test: {song_directory_path}\\{mp3_list[0]}")
-                if len(mp3_list) == 1:
-                    file_found = True
-                    song_location = f"{song_directory_path}\\{mp3_list[0]}"
-                    pass
-                elif len(mp3_list) > 1:
-                    print("Multiple MP3 file have been observed, Please choose which file you want to use:")
-                    for i in range(len(mp3_list)):
-                        print(f"{i}: {mp3_list[i]}")
-
-                    # ask user for input for which file to choose
-                    while 1:
-                        # get input from user for file number
-                        num = input("File Number: ")
-                        if num.isdigit():
-                            num = int(num)
-                            # print(num)
-                            if len(mp3_list) >= num >= 0:
-                                song_location = f"{song_directory_path}\\{mp3_list[num]}"
-                                print(song_location)
-                                file_found = True
-                                break
-                        print("Choose a valid File Number")
-
-                    # print(mp3_list)
-
-                else:
-                    print("MP3 file can not be found")
-                    file_found = False
-                    exit(-1)
-
-            # copy file to destination
-            if not file_found:
-                print("Error, file has not been found")
-                exit(-1)
-            else:
-                shutil.copy(song_location, f"{dir_destination}\\{file_name}.mp3")
-
-                #todo run copy and rename
-                pass
-
-            break  # todo break for x in directory list
-
-        # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    pass
+    # text_file_path = input("Text File Locations: ")
+    text_file_path = R"D:\henry\Files\Desktop\songtest\songs.txt"
+    # dir_input = input("Directory with Songs: ")
+    dir_input = R"D:\henry\Files\Desktop\songtest\Songs"
+    # dir_destination = input("Destination File: ")
+    dir_destination = R"D:\henry\Files\Desktop\songtest\dest"
+
+    init_log()
+    add_log("Initialise all code")
+
+    text_file = open(text_file_path, "rt")
+    
+    while get_song_id(text_file) != -1:
+        pass
+    
+    # Song Ids have been parsed
+    text_file.close()
+
+    print(get_song_id(text_file))
+    print(get_song_id(text_file))
+    print(get_song_id(text_file))
+    print(get_song_id(text_file))
+    print(get_song_id(text_file))
+
+    # error_file.close()
+    # text_file.close()
 
 

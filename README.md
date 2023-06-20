@@ -11,5 +11,5 @@ the text file to compare song ids
 the destination folder
 
 
-Part 2
-Novels
+Part 2 
+Create a Osu Song File Copier that copies the osk file into a directory to be saved later for east transportation
