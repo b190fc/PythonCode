@@ -131,26 +131,26 @@ def setup_logger():
 
 
 if __name__ == "__main__":
-    text_file_path = r"C:\Users\henry\Desktop\songs.txt"
-    dir_input = r"C:\Users\henry\Desktop\songs\Songs"
-    dir_destination = R"C:\Users\henry"
+    text_file_path = R"C:\Users\henry\Desktop\songs.txt"
+    dir_input = R"D:\henry\Files\Desktop\songtest\Songs"
+    dir_destination = R"D:\henry\Files\Desktop\songtest\dest"
 
     setup_logger()
 
-    # Test the logger by writing some log messages
-    logger.debug('This is a debug message')
-    logger.info('This is an info message')
-    logger.warning('This is a warning message')
-    logger.error('This is an error message')
-    logger.critical('This is a critical message')
+    # # Test the logger by writing some log messages
+    # logger.debug('This is a debug message')
+    # logger.info('This is an info message')
+    # logger.warning('This is a warning message')
+    # logger.error('This is an error message')
+    # logger.critical('This is a critical message')
 
 
 
-    # try:
-    #     # execute main function
-    #     main(text_file_path, dir_input, dir_destination)
-    # except Exception as e:
-    #     # log any unhandled exceptions
-    #     logging.exception("Unhandled exception occurred")
-    #     print("An error occurred. Please check the log file for details.")
-    #
+    try:
+        # execute main function
+        main(text_file_path, dir_input, dir_destination)
+    except Exception as e:
+        # log any unhandled exceptions
+        logging.exception("Unhandled exception occurred")
+        print("An error occurred. Please check the log file for details.")
+    
