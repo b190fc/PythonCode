@@ -20,6 +20,25 @@ def write_file(dir_path = directory_path, out_file = output_file):
         for folder in folder_lst:
             file.write(folder + '\n')
     print("File Written.")
+    return out_file
+
+def get_song_id(in_file, out_file):
+    digits_list = []
+    with open(in_file, 'r') as in_file:
+        with open(out_file, 'w') as out_file:
+            for line in in_file:
+                line = line.strip()  # Remove leading/trailing whitespace and newline characters
+                digits = ""
+                for char in line:
+                    if char.isdigit():
+                        digits += char
+                    else:
+                        break  # Stop collecting digits if a non-digit character is encountered
+                if digits:
+                    out_file.write(digits + '\n')
+                    digits_list.append(digits)
+    
+    print("digit list", digits_list)
 
 
 
