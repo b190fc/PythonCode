@@ -4,7 +4,7 @@ import logging
 
 global logger
 
-def read_song_ids(file_path):
+def read_song_ids(file_path) -> list[str]:
     """Reads all song IDs from a text file and returns them as a list."""
     with open(file_path, "rt") as f:
         return [line.strip() for line in f if line.strip()]
@@ -93,6 +93,11 @@ def copy_and_rename_song(src_path, dest_dir, dest_filename):
 
 
 def main(text_file_path, dir_input, dir_destination):
+    #ask if input from file or parse all songs
+    while True:
+        print()
+        stage = input("Option: ")
+
     song_ids = read_song_ids(text_file_path)
     directory_list = os.listdir(dir_input)
     for song_id in song_ids:
@@ -111,7 +116,7 @@ def setup_logger():
     logger.setLevel(logging.DEBUG)
 
     # Create a file handler that logs debug and above to a file
-    file_handler = logging.FileHandler('my.log')
+    file_handler = logging.FileHandler('OsuSong.log')
     file_handler.setLevel(logging.DEBUG)
 
     # Create a console handler that logs info and above to the console
@@ -131,7 +136,7 @@ def setup_logger():
 
 
 if __name__ == "__main__":
-    text_file_path = R"C:\Users\henry\Desktop\songs.txt"
+    text_file_path = R"D:\henry\Files\Desktop\songtest\file.txt"
     dir_input = R"D:\henry\Files\Desktop\songtest\Songs"
     dir_destination = R"D:\henry\Files\Desktop\songtest\dest"
 

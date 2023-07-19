@@ -21,23 +21,7 @@ def main():
     dw.get_song_id(SongInfo, SongID)
 
     #test
-    url = "https://osu.ppy.sh/api/v2/beatmaps/2007456/attributes"
-    
-    headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer " + token
-}
 
-    data = {
-        "ruleset": "osu"
-    }
-
-    response = requests.post(url, headers=headers, data=json.dumps(data))
-    
-    print(response.json())
-
-    print("done")
 
 
 if __name__ == '__main__':
